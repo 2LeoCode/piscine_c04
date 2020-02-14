@@ -1,16 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/11 20:12:19 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/12 13:04:38 by lsuardi          ###   ########.fr       */
+/*   Created: 2020/02/12 13:10:33 by lsuardi           #+#    #+#             */
+/*   Updated: 2020/02/12 14:42:48 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 int		ft_calc_base(char *b)
 {
@@ -24,7 +22,7 @@ int		ft_calc_base(char *b)
 		while (b[++j])
 			if (i != j && b[i] == b[j])
 				return (0);
-		if (b[i] == '+' || b[i] == '-')
+		if (b[i] == '+' || b[i] == '-' || b[i] = ' ')
 			return (0);
 	}
 	if (i < 2)
@@ -32,29 +30,39 @@ int		ft_calc_base(char *b)
 	return(i);
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+int		ft_nbr(char *str)
 {
 	int i;
-	int nb;
 	
+	i = -1;
+	while (str[++i]);
+	if(str[0] == '-')
+		return (i);
+	else
+		return (i + 1)
+}
+
+void	ft_negative(char *str, int *nbr, int *isneg)
+{
+	if (str[0] == '-')
+		isneg
+}
+
+int		ft_atoi_base(char *str, char *base)
+{
+	int nb_int;
+	int i;
+	int j;
+
 	i = ft_calc_base(base);
-	nb = nbr;
-	if (nbr < 0)
+	j = ft_nbr(str);
+	while (--j >= 0)
 	{
-		write(1, "-", 1);
-		if (nb == -2147483648)
-			nb = 2147483647;
-		else
-			nb *= -1;
+		if (!(j == 0 && str[0] == '-'))
+			{
+				if ()
+				nb_int += j * 10;	
+			}
 	}
-	if (i)
-	{
-		if (nbr >= ft_calc_base(base):)
-		{
-			ft_putnbr_base(nb / i, base);
-			ft_putnbr_base(nb % i, base);
-		}
-		else
-			write(1, nb + (base[nb] - nb), 1);
-	}
+	return (nb_int);
 }
