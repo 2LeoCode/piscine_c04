@@ -6,7 +6,7 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:12:19 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/17 16:03:43 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 16:18:32 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	ft_putnbr_base(int nbr, char *base)
 	int nb;
 
 	i = ft_calc_base(base);
+	if (i == 0)
+		return ;
 	nb = nbr;
-	if (nbr < 0)
+	if (nb < 0)
 	{
 		write(1, "-", 1);
 		if (nb == -2147483648)
