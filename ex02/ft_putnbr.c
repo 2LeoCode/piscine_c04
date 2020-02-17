@@ -6,13 +6,13 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:36:22 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/17 16:09:06 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 19:40:36 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putnum(int i)
+void	ft_putnum(long i)
 {
 	char a;
 
@@ -22,19 +22,13 @@ void	ft_putnum(int i)
 
 void	ft_putnbr(int nb)
 {
-	int i;
-	int ng;
+	long i;
 
-	ng = 0;
-	i = nb;
+	i = (long)nb;
 	if (i < 0)
 	{
-		ng = 1;
 		write(1, "-", 1);
-		if (i == -2147483648)
-			i = 2147483647;
-		else
-			i *= -1;
+		i *= -1;
 	}
 	if (i > 9)
 	{

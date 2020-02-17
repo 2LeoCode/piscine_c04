@@ -6,7 +6,7 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:12:19 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/17 16:18:32 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 19:42:47 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,17 @@ int		ft_calc_base(char *b)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int i;
-	int nb;
+	int		i;
+	long	nb;
 
 	i = ft_calc_base(base);
 	if (i == 0)
 		return ;
-	nb = nbr;
+	nb = (long)nbr;
 	if (nb < 0)
 	{
 		write(1, "-", 1);
-		if (nb == -2147483648)
-			nb = 2147483647;
-		else
-			nb *= -1;
+		nb *= -1;
 	}
 	{
 		if (nb >= ft_calc_base(base))
