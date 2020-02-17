@@ -6,7 +6,7 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:12:19 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/17 13:21:12 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 16:03:43 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,8 @@ void	ft_putnbr_base(int nbr, char *base)
 		else
 			nb *= -1;
 	}
-	if (i)
 	{
-		if (nbr >= ft_calc_base(base))
+		if (nb >= ft_calc_base(base))
 		{
 			ft_putnbr_base(nb / i, base);
 			ft_putnbr_base(nb % i, base);
