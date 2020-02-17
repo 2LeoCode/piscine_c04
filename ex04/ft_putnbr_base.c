@@ -6,7 +6,7 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 20:12:19 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/12 13:04:38 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 13:21:12 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int		ft_calc_base(char *b)
 	}
 	if (i < 2)
 		return (0);
-	return(i);
+	return (i);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
 {
 	int i;
 	int nb;
-	
+
 	i = ft_calc_base(base);
 	nb = nbr;
 	if (nbr < 0)
@@ -49,12 +49,12 @@ void	ft_putnbr_base(int nbr, char *base)
 	}
 	if (i)
 	{
-		if (nbr >= ft_calc_base(base):)
+		if (nbr >= ft_calc_base(base))
 		{
 			ft_putnbr_base(nb / i, base);
 			ft_putnbr_base(nb % i, base);
 		}
 		else
-			write(1, nb + (base[nb] - nb), 1);
+			write(1, &base[nb], 1);
 	}
 }

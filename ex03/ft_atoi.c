@@ -6,13 +6,15 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 10:57:57 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/17 12:59:11 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 13:23:28 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_isspace(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\n' || c == ' ')
+	if (c == '\t' || c == '\n' || c == '\v')
+		return (1);
+	if (c == '\f' || c == '\n' || c == ' ')
 		return (1);
 	return (0);
 }
@@ -23,7 +25,6 @@ int		ft_negative(char *str, int *k)
 
 	*k = *k - 1;
 	n = 0;
-
 	while (str[++*k] == '-' || str[*k] == '+')
 		if (str[*k] == '-')
 			n++;
@@ -45,7 +46,7 @@ int		ft_recurs_atoi(int init, int end, char *str, int *nb)
 	{
 		*nb *= 10;
 		*nb += str[i] - 48;
-		return(ft_recurs_atoi(i + 1, j, str, nb));
+		return (ft_recurs_atoi(i + 1, j, str, nb));
 	}
 }
 

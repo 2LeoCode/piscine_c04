@@ -6,13 +6,15 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 16:28:51 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/10 16:34:17 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/17 13:05:43 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (str[i])
 		i++;
 	return (i);
