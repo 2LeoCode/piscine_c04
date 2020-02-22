@@ -6,47 +6,11 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:10:33 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/18 10:51:14 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/22 13:48:58 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(char c)
-{
-	if (c == '\t' || c == '\n' || c == '\v')
-		return (1);
-	if (c == '\f' || c == '\r' || c == ' ')
-		return (1);
-	return (0);
-}
-
-int		ft_atoi(char *str)
-{
-	int i;
-	int nb;
-	int neg;
-
-	i = 0;
-	nb = 0;
-	while (ft_isspace(str[i]))
-		i++;
-	i--;
-	while (str[++i] == '+' || str[i] == '-')
-		if (str[i] == '-')
-			neg++;
-	if (neg % 2 == 0)
-		neg = -1;
-	else
-		neg = 1;
-	i--;
-	if (str[i] >= '0' && str[i] <= '9')
-		nb = str[i] - 48;
-	while (str[++i] >= '0' && str[i] <= '9')
-	{
-		nb *= 10;
-		nb += str[i] - 48;
-	}
-	return (nb * neg);
-}
+#define SIZE	tab[128]
 
 int		ft_calc_base(char *b)
 {
@@ -68,52 +32,94 @@ int		ft_calc_base(char *b)
 	return(i);
 }
 
-void	ft_compare_string_base(char *string, char *base, int size)
+void	*ft_compare_string_base(char *string, char *base, int size, int *tab)
+{
+	int		i;
+	int		j;
+	int		k;
+	int		ok;
+
+	k = 0;
+	ok = 0;
+	while (string[k])
+	{
+		ok = 0;
+		i = -1;
+		while (base[++i])
+			if (string[k] == base[i])
+				ok = 1;
+		if (ok == 0)
+		{
+			SIZE = k;
+			break;
+		}
+		k++;
+	}
+	i = 0;
+	while (i < SIZE)
+	{
+		j = -1;
+		while (++j < size)
+			if (string[i] == base[j])
+				tab[i] = j;
+		i++;
+	}
+	return (tab);
+}
+
+int		ft_pow(int nb, int pow)
+{
+	if (pow < 0)
+		return (nb);
+	if (pow > 0)
+		return (nb * ft_pow(nb, pow - 1));
+	return (1);
+}
+
+int		ft_get_nb(int *tab, int base)
 {
 	int i;
 	int j;
-	int k;
+	int nb;
 
-	k = 0;
-	while (string[k])
-		k++;
-	i = 0;
-	while (i < size)
+	nb = 0;
+	j = 0;
+	i = SIZE - 1;
+	j = 0;
+	while (j < SIZE)
 	{
-		j = 0;
-		while (j < k)
-		{
-			if (string[j] == base[i])
-				string[j] = i + 48;
-		}
+		nb += tab[i] * ft_pow(base, j);
+		i--;
+		j++;
 	}
+	return (nb);
 }
 
 int		ft_atoi_base(char *str, char *base)
 {
-	int nb;
+	int	neg;
 	int nb_fin;
-	int bs;
+	int	bs;
+	int tab[129];
 	int i;
-	int j;
 
 	i = 0;
+	neg = 1;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+			|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+		i++;
+	while (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			neg *= -1;
+		i++;
+	}
+	str = &str[i];
+	nb_fin = 0;
 	bs = ft_calc_base(base);
 	if (bs == 0)
 		return (0);
-	ft_compare_string_base(str, base, bs);
-	nb = ft_atoi(str);
-	while (str[i])
-		i++;
-	while (nb > 0)
-	{
-		j = i + 1;
-		bs = ft_calc_base(base);
-		while (--j > 0)
-			bs *= bs;
-		nb_fin *= 10;
-		nb_fin += nb % bs;
-		nb /= 10;
-	}	
+	ft_compare_string_base(str, base, bs, tab);
+	nb_fin = ft_get_nb(tab, bs) * neg;
 	return (nb_fin);
 }
