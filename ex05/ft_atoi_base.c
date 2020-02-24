@@ -6,7 +6,7 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:10:33 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/22 13:48:58 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/22 14:04:59 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ int		ft_calc_base(char *b)
 	}
 	if (i < 2)
 		return (0);
-	return(i);
+	return (i);
 }
 
 void	*ft_compare_string_base(char *string, char *base, int size, int *tab)
 {
 	int		i;
-	int		j;
 	int		k;
 	int		ok;
 
@@ -49,20 +48,17 @@ void	*ft_compare_string_base(char *string, char *base, int size, int *tab)
 			if (string[k] == base[i])
 				ok = 1;
 		if (ok == 0)
-		{
-			SIZE = k;
-			break;
-		}
+			break ;
 		k++;
 	}
-	i = 0;
-	while (i < SIZE)
+	SIZE = k;
+	i = -1;
+	while (++i < SIZE)
 	{
-		j = -1;
-		while (++j < size)
-			if (string[i] == base[j])
-				tab[i] = j;
-		i++;
+		k = -1;
+		while (++k < size)
+			if (string[i] == base[k])
+				tab[i] = k;
 	}
 	return (tab);
 }
