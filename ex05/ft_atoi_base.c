@@ -6,11 +6,11 @@
 /*   By: lsuardi <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:10:33 by lsuardi           #+#    #+#             */
-/*   Updated: 2020/02/22 14:04:59 by lsuardi          ###   ########.fr       */
+/*   Updated: 2020/02/24 15:21:04 by lsuardi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define SIZE	tab[128]
+#define SIZE 9999
 
 int		ft_calc_base(char *b)
 {
@@ -32,14 +32,13 @@ int		ft_calc_base(char *b)
 	return (i);
 }
 
-void	*ft_compare_string_base(char *string, char *base, int size, int *tab)
+void	ft_compare_string_base(char *string, char *base, int size, int *tab)
 {
 	int		i;
 	int		k;
 	int		ok;
 
 	k = 0;
-	ok = 0;
 	while (string[k])
 	{
 		ok = 0;
@@ -51,16 +50,15 @@ void	*ft_compare_string_base(char *string, char *base, int size, int *tab)
 			break ;
 		k++;
 	}
-	SIZE = k;
+	tab[SIZE] = k;
 	i = -1;
-	while (++i < SIZE)
+	while (++i < tab[SIZE])
 	{
 		k = -1;
 		while (++k < size)
 			if (string[i] == base[k])
 				tab[i] = k;
 	}
-	return (tab);
 }
 
 int		ft_pow(int nb, int pow)
@@ -80,9 +78,9 @@ int		ft_get_nb(int *tab, int base)
 
 	nb = 0;
 	j = 0;
-	i = SIZE - 1;
+	i = tab[SIZE] - 1;
 	j = 0;
-	while (j < SIZE)
+	while (j < tab[SIZE])
 	{
 		nb += tab[i] * ft_pow(base, j);
 		i--;
@@ -96,7 +94,7 @@ int		ft_atoi_base(char *str, char *base)
 	int	neg;
 	int nb_fin;
 	int	bs;
-	int tab[129];
+	int tab[SIZE + 1];
 	int i;
 
 	i = 0;
